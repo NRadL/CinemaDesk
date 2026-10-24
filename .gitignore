@@ -60,4 +60,4 @@ TestResult.xml
 nunit-*.
 
 # IDE
-./idea
+.idea/
