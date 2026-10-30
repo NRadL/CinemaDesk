@@ -1,11 +1,18 @@
 ﻿using System.Collections.Generic;
 using Cinema_Desk;
 
+int nextMovieId = 1;
 List<Movie> movies = new List<Movie>();
 
-movies.Add(new Movie("Obsesja", 108, "Horror"));
-movies.Add(new Movie("Shronk", 227, "Comedy"));
-movies.Add(new Movie("Superman", 209, "Action"));
+
+movies.Add(new Movie(nextMovieId++, "Obsesja", 108, "Horror"));
+movies.Add(new Movie(nextMovieId++, "Shronk", 227, "Comedy"));
+movies.Add(new Movie(nextMovieId++, "Superman", 209, "Action"));
+
+List<Screening> screenings = new List<Screening>();
+screenings.Add(new Screening(1, 1, new DateTime(2026, 11, 7, 18, 30, 0), "A", 80));
+screenings.Add(new Screening(2, 3, new DateTime(2026, 11, 7, 20, 0, 0), "B", 120));
+screenings.Add(new Screening(3, 99, new DateTime(2026, 11, 8, 19, 0, 0), "A", 80));
 
 //add a movie
 while (true)
@@ -39,7 +46,7 @@ while (true)
         Console.WriteLine("Genre can't be empty");
     }
 
-    movies.Add(new Movie(title, durationMinute, genre));
+    movies.Add(new Movie(nextMovieId++, title, durationMinute, genre));
 
     Console.Write("Do you want to add another movie? (y/N): ");
     string? anotherMovie = Console.ReadLine();
@@ -57,18 +64,16 @@ foreach (var movie in movies)
     Console.WriteLine(movie);
 }
 
-// Look up a movie
-Console.Write("Enter the title of the movie to check if it exists: ");
-
-string? userTitle = Console.ReadLine();
-bool found = false;
-
-foreach (var movie in movies)
+// List all screenings
+foreach (var screening in screenings)
 {
-    if (movie.Title == userTitle)
+    Movie? movie = movies.FirstOrDefault(m => m.Id == screening.MovieId);
+
+    if (movie == null)
     {
-        found = true;
-        break;
+        Console.WriteLine($"{screening} -> movie #{screening.MovieId} not found");
+        continue;
     }
+
+    Console.WriteLine($"{movie.Title} ({movie.DurationMinutes} min) - {screening}");
 }
-Console.WriteLine(found ? "found" : "not found");

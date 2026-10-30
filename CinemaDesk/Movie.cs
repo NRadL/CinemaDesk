@@ -7,8 +7,9 @@ public class Movie
     public int DurationMinutes { get; set; }
     public string Genre { get; set; }
 
-    public Movie(string title, int durationMinutes, string genre)
+    public Movie(int id, string title, int durationMinutes, string genre)
     {
+        Id = id;
         Title = title;
         DurationMinutes = durationMinutes;
         Genre = genre;
