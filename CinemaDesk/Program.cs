@@ -2,9 +2,8 @@
 using Cinema_Desk;
 
 int nextMovieId = 1;
+
 List<Movie> movies = new List<Movie>();
-
-
 movies.Add(new Movie(nextMovieId++, "Obsesja", 108, "Horror"));
 movies.Add(new Movie(nextMovieId++, "Shronk", 227, "Comedy"));
 movies.Add(new Movie(nextMovieId++, "Superman", 209, "Action"));
@@ -25,7 +24,8 @@ do
     Console.WriteLine("1. Enter 1 to add movies");
     Console.WriteLine("2. Enter 2 to list all movies");
     Console.WriteLine("3. Enter 3 to list all screenings");
-    Console.WriteLine("4. Enter 4 to exit");
+    Console.WriteLine("4. Enter 4 to list long movies");
+    Console.WriteLine("5. Enter 5 to exit");
 
     Console.Write("\nChoose an option: ");
     userChoice = Console.ReadLine();
@@ -99,8 +99,17 @@ do
             Console.ReadKey();
             break;
         
-        // Exit the app
+        // List long movies
         case 4:
+            Movie.ListLongMovies(movies);
+            
+            Console.WriteLine();
+            Console.Write("Press any key to return to the main menu.");
+            Console.ReadKey();
+            break;
+            
+        // Exit the app
+        case 5:
             continueLoop = false;
             break;
         

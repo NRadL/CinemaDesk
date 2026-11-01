@@ -42,14 +42,14 @@ public class Movie
     public static void ListLongMovies(List<Movie> movies)
     {
         bool foundLong = false;
-        
+
         if (movies.Count == 0)
         {
             Console.WriteLine("No movies in the list.");
             return;
         }
-        
-        
+
+
         foreach (var movie in movies)
         {
             if (movie.IsLong())
@@ -58,8 +58,9 @@ public class Movie
                 foundLong = true;
             }
         }
-        
+
         if (!foundLong)
             Console.WriteLine("No long movies in the list.");
     }
+    
 }
