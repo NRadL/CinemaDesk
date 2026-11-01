@@ -83,10 +83,7 @@ do
         
         // List all movies
         case 2:
-            foreach (var movie in movies)
-            {
-                Console.WriteLine(movie);
-            }
+            Movie.ListMovies(movies);
 
             Console.WriteLine();
             Console.Write("Press any key to return to the main menu.");
@@ -95,18 +92,7 @@ do
         
         // List all screenings
         case 3:
-            foreach (var screening in screenings)
-            {
-                Movie? movie = movies.FirstOrDefault(m => m.Id == screening.MovieId);
-
-                if (movie == null)
-                {
-                    Console.WriteLine($"{screening} -> movie #{screening.MovieId} not found");
-                    continue;
-                }
-
-                Console.WriteLine($"{movie.Title} ({movie.DurationMinutes} min) - {screening}");
-            }
+            Screening.ListScreenings(screenings, movies);
             
             Console.WriteLine();
             Console.Write("Press any key to return to the main menu.");

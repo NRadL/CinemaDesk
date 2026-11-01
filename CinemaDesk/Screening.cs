@@ -21,4 +21,20 @@ public class Screening
     {
         return $"#{Id} | {StartTime:yyyy-MM-dd HH:mm} | Room {Room} | {SeatsTotal} seats";
     }
+
+    public static void ListScreenings(List<Screening> screenings, List<Movie> movies)
+    {
+        foreach (var screening in screenings)
+        {
+            Movie? movie = movies.FirstOrDefault(m => m.Id == screening.MovieId);
+
+            if (movie == null)
+            {
+                Console.WriteLine($"{screening} -> movie #{screening.MovieId} not found");
+                continue;
+            }
+
+            Console.WriteLine($"{movie.Title} ({movie.DurationMinutes} min) - {screening}");
+        }
+    }
 }
