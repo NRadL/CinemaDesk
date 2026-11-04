@@ -25,7 +25,9 @@ do
     Console.WriteLine("2. Enter 2 to list all movies");
     Console.WriteLine("3. Enter 3 to list all screenings");
     Console.WriteLine("4. Enter 4 to list long movies");
-    Console.WriteLine("5. Enter 5 to exit");
+    Console.WriteLine("5. Enter 5 to remove movies");
+    Console.WriteLine("6. Enter 6 to update a movie");
+    Console.WriteLine("7. Exit");
 
     Console.Write("\nChoose an option: ");
     userChoice = Console.ReadLine();
@@ -107,9 +109,16 @@ do
             Console.Write("Press any key to return to the main menu.");
             Console.ReadKey();
             break;
+        
+        case 5:
+            
+            break;
+        
+        case 6:
+            break;
             
         // Exit the app
-        case 5:
+        case 7:
             continueLoop = false;
             break;
         
