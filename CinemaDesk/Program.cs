@@ -76,7 +76,7 @@ do
                 Console.Write("Do you want to add another movie? (y/N): ");
                 string? anotherMovie = Console.ReadLine();
 
-                if (anotherMovie?.Trim().ToLower() == "y")
+                if (string.Equals(anotherMovie?.Trim(), "y", StringComparison.OrdinalIgnoreCase))
                     continue;
 
                 break;
@@ -85,7 +85,7 @@ do
         
         // List all movies
         case 2:
-            Movie.ListMovies(movies);
+            CinemaService.ListMovies(movies);
 
             Console.WriteLine();
             Console.Write("Press any key to return to the main menu.");
@@ -94,7 +94,7 @@ do
         
         // List all screenings
         case 3:
-            Screening.ListScreenings(screenings, movies);
+            CinemaService.ListScreenings(screenings, movies);
             
             Console.WriteLine();
             Console.Write("Press any key to return to the main menu.");
@@ -103,17 +103,20 @@ do
         
         // List long movies
         case 4:
-            Movie.ListLongMovies(movies);
+            CinemaService.ListLongMovies(movies);
             
             Console.WriteLine();
             Console.Write("Press any key to return to the main menu.");
             Console.ReadKey();
             break;
         
+        // Remove a movie
         case 5:
+            
             
             break;
         
+        // update a movie
         case 6:
             break;
             
