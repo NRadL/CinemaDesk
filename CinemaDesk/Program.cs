@@ -19,7 +19,7 @@ bool continueLoop = true;
 do
 {
     Console.Clear();
-    
+
     Console.WriteLine("----------------------------------|");
     Console.WriteLine("1. Enter 1 to add movies");
     Console.WriteLine("2. Enter 2 to list all movies");
@@ -31,14 +31,14 @@ do
 
     Console.Write("\nChoose an option: ");
     userChoice = Console.ReadLine();
-    
+
     Int32.TryParse(userChoice, out int userChoiceNum);
 
     switch (userChoiceNum)
     {
         //add a movie
         case 1:
-            
+
             while (true)
             {
                 Console.Write("Enter the title of the movie: ");
@@ -81,8 +81,9 @@ do
 
                 break;
             }
+
             break;
-        
+
         // List all movies
         case 2:
             CinemaService.ListMovies(movies);
