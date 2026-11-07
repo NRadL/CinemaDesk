@@ -125,7 +125,7 @@ do
                     continue;
                 }
 
-                if (int.TryParse(userInput, out int movieId))
+                if (int.TryParse(userInput, out int movieId) &&  movieId > 0)
                 {
                     if (MovieManager.RemoveMovie(movies, movieId))
                         Console.WriteLine("Movie removed successfully.");
