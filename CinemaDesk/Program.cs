@@ -19,7 +19,7 @@ bool continueLoop = true;
 do
 {
     Console.Clear();
-    
+
     Console.WriteLine("----------------------------------|");
     Console.WriteLine("1. Enter 1 to add movies");
     Console.WriteLine("2. Enter 2 to list all movies");
@@ -31,14 +31,14 @@ do
 
     Console.Write("\nChoose an option: ");
     userChoice = Console.ReadLine();
-    
+
     Int32.TryParse(userChoice, out int userChoiceNum);
 
     switch (userChoiceNum)
     {
         //add a movie
         case 1:
-            
+
             while (true)
             {
                 Console.Write("Enter the title of the movie: ");
@@ -71,7 +71,7 @@ do
                 }
 
                 movies.Add(new Movie(nextMovieId++, title, durationMinute, genre));
-                
+
                 Console.WriteLine();
                 Console.Write("Do you want to add another movie? (y/N): ");
                 string? anotherMovie = Console.ReadLine();
@@ -81,8 +81,9 @@ do
 
                 break;
             }
+
             break;
-        
+
         // List all movies
         case 2:
             CinemaService.ListMovies(movies);
@@ -91,44 +92,114 @@ do
             Console.Write("Press any key to return to the main menu.");
             Console.ReadKey();
             break;
-        
+
         // List all screenings
         case 3:
             CinemaService.ListScreenings(screenings, movies);
-            
+
             Console.WriteLine();
             Console.Write("Press any key to return to the main menu.");
             Console.ReadKey();
             break;
-        
+
         // List long movies
         case 4:
             CinemaService.ListLongMovies(movies);
-            
+
             Console.WriteLine();
             Console.Write("Press any key to return to the main menu.");
             Console.ReadKey();
             break;
-        
+
         // Remove a movie
         case 5:
-            
-            
+            Console.Clear();
+            while (true)
+            {
+                Console.WriteLine("Enter the id of the movie to remove:");
+                string? userInput = Console.ReadLine();
+
+                if (string.IsNullOrWhiteSpace(userInput))
+                {
+                    Console.WriteLine("ID can't be empty.");
+                    continue;
+                }
+
+                if (int.TryParse(userInput, out int movieId) && movieId >= 0)
+                {
+                    if (MovieManager.RemoveMovie(movies, movieId))
+                        Console.WriteLine("Movie removed successfully.");
+                    else
+                        Console.WriteLine("Movie not found.");
+
+                    Console.WriteLine();
+                    Console.Write("Press any key to return to the main menu.");
+                    Console.ReadKey();
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid id. Try again.");
+                }
+            }
+
             break;
-        
+
         // update a movie
         case 6:
+            Console.Clear();
+            while (true)
+            {
+                Console.WriteLine("Enter the id of the movie to update:");
+                string? userInputId = Console.ReadLine();
+
+                if (string.IsNullOrWhiteSpace(userInputId))
+                {
+                    Console.WriteLine("ID can't be empty.");
+                    continue;
+                }
+
+                if (!int.TryParse(userInputId, out int movieId) || movieId <= 0)
+                {
+                    Console.WriteLine("Invalid id. Try again.");
+                    continue;
+                }
+
+                while (true)
+                {
+                    Console.WriteLine("Enter the new genre of the movie:");
+                    string? userInputGenre = Console.ReadLine();
+
+                    if (string.IsNullOrWhiteSpace(userInputGenre))
+                    {
+                        Console.WriteLine("Genre can't be empty.");
+                        continue;
+                    }
+
+                    if (MovieManager.UpdateMovie(movies, movieId, userInputGenre))
+                        Console.WriteLine("Movie updated successfully.");
+                    else
+                        Console.WriteLine("Movie not found.");
+
+                    Console.WriteLine();
+                    Console.Write("Press any key to return to the main menu.");
+                    Console.ReadKey();
+                    break;
+                }
+
+                break;
+            }
+
             break;
-            
+
         // Exit the app
         case 7:
             continueLoop = false;
             break;
-        
+
         default:
             Console.WriteLine("Invalid option. Try again.");
             Console.ReadLine();
             break;
     }
-    
 } while (continueLoop);
