@@ -19,7 +19,7 @@ bool continueLoop = true;
 do
 {
     Console.Clear();
-
+    
     Console.WriteLine("----------------------------------|");
     Console.WriteLine("1. Enter 1 to add movies");
     Console.WriteLine("2. Enter 2 to list all movies");
@@ -31,14 +31,14 @@ do
 
     Console.Write("\nChoose an option: ");
     userChoice = Console.ReadLine();
-
+    
     Int32.TryParse(userChoice, out int userChoiceNum);
 
     switch (userChoiceNum)
     {
         //add a movie
         case 1:
-
+            
             while (true)
             {
                 Console.Write("Enter the title of the movie: ");
@@ -71,7 +71,7 @@ do
                 }
 
                 movies.Add(new Movie(nextMovieId++, title, durationMinute, genre));
-
+                
                 Console.WriteLine();
                 Console.Write("Do you want to add another movie? (y/N): ");
                 string? anotherMovie = Console.ReadLine();
@@ -81,9 +81,8 @@ do
 
                 break;
             }
-
             break;
-
+        
         // List all movies
         case 2:
             CinemaService.ListMovies(movies);
@@ -92,25 +91,25 @@ do
             Console.Write("Press any key to return to the main menu.");
             Console.ReadKey();
             break;
-
+        
         // List all screenings
         case 3:
             CinemaService.ListScreenings(screenings, movies);
-
+            
             Console.WriteLine();
             Console.Write("Press any key to return to the main menu.");
             Console.ReadKey();
             break;
-
+        
         // List long movies
         case 4:
             CinemaService.ListLongMovies(movies);
-
+            
             Console.WriteLine();
             Console.Write("Press any key to return to the main menu.");
             Console.ReadKey();
             break;
-
+        
         // Remove a movie
         case 5:
             Console.Clear();
@@ -121,11 +120,11 @@ do
 
                 if (string.IsNullOrWhiteSpace(userInput))
                 {
-                    Console.WriteLine("ID can't be empty.");
+                    Console.WriteLine("Title can't be empty");
                     continue;
                 }
 
-                if (int.TryParse(userInput, out int movieId) && movieId >= 0)
+                if (int.TryParse(userInput, out int movieId))
                 {
                     if (MovieManager.RemoveMovie(movies, movieId))
                         Console.WriteLine("Movie removed successfully.");
@@ -144,7 +143,7 @@ do
             }
 
             break;
-
+        
         // update a movie
         case 6:
             Console.Clear();
@@ -191,15 +190,16 @@ do
             }
 
             break;
-
+            
         // Exit the app
         case 7:
             continueLoop = false;
             break;
-
+        
         default:
             Console.WriteLine("Invalid option. Try again.");
             Console.ReadLine();
             break;
     }
+    
 } while (continueLoop);
