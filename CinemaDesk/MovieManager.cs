@@ -43,7 +43,7 @@ public class MovieManager
         return movies.Remove(movie);
     }
 
-    public static bool ChangeMovie(List<Movie> movies, int id, string newGenre)
+    public static bool UpdateMovie(List<Movie> movies, int id, string newGenre)
     {
         var movie = movies.FirstOrDefault(m => m.Id == id);
         if (movie == null)
