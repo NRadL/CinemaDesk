@@ -45,7 +45,7 @@ do
                 string? title = Console.ReadLine();
                 if (string.IsNullOrWhiteSpace(title))
                 {
-                    Console.WriteLine("Title can't be empty");
+                    Console.WriteLine("ID can't be empty");
                     continue;
                 }
 
